@@ -2,9 +2,10 @@
 
 include 'conexion.php';
 
-$sql="select * From clientes";
-$result=$conn->query($sql);
+$sql="SELECT * FROM clientes";
+$result=mysqli_query($conn,$sql);
 
+    //var_dump("--- CONSULTA --- ".$result);
 ?>
 
 <!DOCTYPE html>
@@ -22,22 +23,23 @@ Registro de Clientes:
 
 <table border="1">
     <tr>
-        <td>ID</td>
-        <td>Nombre</td>
-        <td>Email</td>
-        <td>Telefono</td>
-        <td>Direccion</td>
-        <td>Ciudad</td>
-        <td>Pais</td>
-        <td>Estado</td>
-        <td>Acciones</td>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Telefono</th>
+        <th>Direccion</th>
+        <th>Ciudad</th>
+        <th>Pais</th>
+        <th>Estado</th>
+        <th>Comentarios</th>
+        <th>Acciones</th>
     </tr>
 
     <?php
-
-    if($result->num_rows > 0 ){
-        while($row=$result->fetch_assoc());
-    }
+    //var_dump($result);
+    //if($result->num_rows > 0 ){
+        while($row=mysqli_fetch_assoc($result));
+    
     ?>
 
     <tr>
@@ -49,6 +51,7 @@ Registro de Clientes:
         <td><?=$row['ciudad']?></td>
         <td><?=$row['pais']?></td>
         <td><?=$row['estado']?></td>
+        <td><?=$row['comentarios']?></td>
         <td>
             <a href="editar.php?id<?=$row['id']?>">editar</a>
             <a href="eliminar.php?id=<?=$row['id']?>" onclick="confirm return('¿seguro que deseas eliminar?')">eliminar</a>
@@ -61,4 +64,8 @@ Registro de Clientes:
 </body>
 </html>
 
-<?php $conn->close(); ?>
+<?php //}
+
+//$conn->close();
+
+?>

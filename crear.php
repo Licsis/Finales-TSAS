@@ -10,6 +10,10 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $ciudad=$_POST['ciudad'];
     $pais=$_POST['pais'];
     $estado=$_POST['estado'];
+    $comentarios=$_POST['comentarios'];
+
+    $sql="INSERT INTO `clientes`(`nombre`, `email`, `telefono`, `direccion`, `ciudad`, `pais`, `estado`, `comentarios`)
+    VALUES ('$nombre','$email','$telefono','$direccion','$ciudad','$pais','$estado','$comentarios')";
 
     if($conn->query($sql)===TRUE){
         echo"registro creado";

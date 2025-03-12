@@ -4,10 +4,18 @@ $userName="root";
 $pasword="";
 $dbName="empresa";
 
-$conn = new mysqli($serverName, $userName, $pasword, $dbName);
+$conn = mysqli_connect($serverName, $userName, $pasword, $dbName);
 
-if($conn->connect_error){
-    die("conexion fallida".$conn->connect_error);
+// Verificar la conexión
+if (!$conn) {
+    die("Conexión a la base de datos fallida: " . mysqli_connect_error());
 }
+
+echo "Conexión exitosa";
+
+// Aquí puedes realizar consultas a la base de datos
+
+// Cerrar la conexión
+//mysqli_close($conn);
 
 ?>
